@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Container from '@material-ui/core/Container';
-
-// modal 
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 
 // WifiConnectionLoadingPage
 import WifiConnectionLoadingPage from '../wifi_connection_loading';
@@ -52,14 +46,6 @@ export const ClubMemberPage = (props) => {
     setState({
       ...state,
       [name]: value,
-    })
-  }
-
-  const onHandleClose = () => {
-    setState({
-      ...state,
-      clubPageOpen: false,
-      loadingPageOpen: true,
     })
   }
 
@@ -120,37 +106,14 @@ export const ClubMemberPage = (props) => {
       {state.loadingPageOpen && (
         <>
           <WifiConnectionLoadingPage
-            percentage={ state.percentage }
-            onLoadingComplete={ onLoadingComplete }
+            percentage={state.percentage}
+            onLoadingComplete={onLoadingComplete}
           />
         </>
       )}
-      { state.firstTimeConnectPageOpen && (
+      {state.firstTimeConnectPageOpen && (
         <Redirect to="/firsttimeconnectdashboard" />
-      ) }
-      {/* <div>
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={state.open}
-          onClose={onHandleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={state.open}>
-            <Container maxWidth="md" style={{ height: '100vh' }}>
-              <div className={classes.paper} style={{ backgroundColor: 'white', height: '100vh' }}>
-                <h2 id="transition-modal-title">Connecting Wifi</h2>
-                <p id="transition-modal-description">SVG</p>
-              </div>
-            </Container>
-          </Fade>
-        </Modal>
-      </div> */}
+      )}
     </div>
   );
 }

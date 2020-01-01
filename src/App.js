@@ -42,10 +42,6 @@ let theme = createMuiTheme({
 theme = responsiveFontSizes(theme);
 
 function App() {
-  const [activeTab, setActiveTab] = useState('/');
-
-  const onTabChange = (event, newActiveTab) => setActiveTab(newActiveTab);
-
   return (
     <Container maxWidth="md" style={{ height: '100vh' }}>
       <img className="branding-logo" src={Logo} alt="Logo"></img>
