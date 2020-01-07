@@ -1,26 +1,35 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { IntlProvider } from "react-intl";
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './store/configureStore';
 
-class EntryPoint extends React.Component {
-    state = {
-      locale: 'en'
-    };
-    store = configureStore();
-    render() {
-      const { locale } = this.state;
+// translations
+import messages_en from "./translations/en.json";
 
-      return (
-        <Provider store={this.store}>
-            <App />
+const messages = {
+  'en': messages_en
+};
+
+const language = navigator.language.split(/[-_]/)[0];
+
+class EntryPoint extends React.Component {
+  store = configureStore();
+  
+  render() {
+    return (
+      <IntlProvider locale={ language } messages={ messages[language] }>
+        <Provider store={ this.store }>
+          <App />
         </Provider>
-      );
-    }
+      </IntlProvider>
+    );
   }
+}
 
 ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 
